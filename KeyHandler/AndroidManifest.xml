@@ -54,9 +54,13 @@
             android:label="@string/button_panel_title"
             android:exported="false">
             <intent-filter>
-                <action android:name="org.lineageos.settings.device.ADDITIONAL_BUTTONS_SETTINGS" />
-                <category android:name="android.intent.category.DEFAULT" />
+                <action android:name="com.android.settings.action.IA_SETTINGS" />
             </intent-filter>
+            <meta-data android:name="com.android.settings.category"
+                android:value="com.android.settings.category.ia.gestures" />
+            <meta-data
+                android:name="com.android.settings.summary"
+                android:resource="@string/alert_slider_summary" />
         </activity>
 
         <service
