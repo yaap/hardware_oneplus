@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018,2020, The Linux Foundation. All rights reserved.
+ * Copyright (c) 2018,2020-2021, The Linux Foundation. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
@@ -58,18 +58,18 @@ class LedVibratorDevice {
 public:
     LedVibratorDevice();
     int on(int32_t timeoutMs);
+    int onWaveform(int waveformIndex);
     int off();
-    int setAmplitude(float amplitude);
     bool mDetected;
-    float mAmplitude;
-    int mGain;
     int write_value(const char *file, const char *value);
+    int write_value(const char *file, int value);
 };
 
 class Vibrator : public BnVibrator {
 public:
     class InputFFDevice ff;
     class LedVibratorDevice ledVib;
+
     ndk::ScopedAStatus getCapabilities(int32_t* _aidl_return) override;
     ndk::ScopedAStatus off() override;
     ndk::ScopedAStatus on(int32_t timeoutMs,
