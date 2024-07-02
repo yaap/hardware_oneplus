@@ -80,7 +80,7 @@ static std::map<Effect, std::vector<std::pair<std::string, std::string>>> LED_EF
         { IGNORE_STORE_PATH, "0" },
         { DURATION_PATH, "8" },
         { VMAX_PATH, "0x1f" },
-        { GAIN_PATH, "0x70" },
+        { GAIN_PATH, "0x7e" },
         { SEQ_PATH, "0x00 0x01" },
         { LOOP_PATH, "0x00 0x00" },
         { BRIGHTNESS_PATH, "1" },
@@ -106,7 +106,7 @@ static std::map<Effect, std::vector<std::pair<std::string, std::string>>> LED_EF
         { IGNORE_STORE_PATH, "0" },
         { DURATION_PATH, "5" },
         { VMAX_PATH, "0x1f" },
-        { GAIN_PATH, "0x29" },
+        { GAIN_PATH, "0x33" },
         { SEQ_PATH, "0x00 0x01" },
         { LOOP_PATH, "0x00 0x00" },
         { BRIGHTNESS_PATH, "1" },
@@ -439,7 +439,7 @@ LedVibratorDevice::LedVibratorDevice() {
 
     mDetected = true;
     mAmplitude = 1.0f;
-    mGain = 0x55;
+    mGain = 0x88;
 }
 
 int LedVibratorDevice::write_value(const char *file, const char *value) {
@@ -490,8 +490,8 @@ int LedVibratorDevice::on(int32_t timeoutMs) {
     int index = (timeoutMs < 81) ? 0 : (timeoutMs < 91) ? 1 :
                 (timeoutMs < 101) ? 2 : 3;
     int gain = 4 + 1.24*timeoutMs;
-    if (gain > 128) {
-        gain = 128;             // 0x80
+    if (gain > 136) {
+        gain = 136;             // 0x88
     }
     mGain = gain;
     gain = gain * mAmplitude;
